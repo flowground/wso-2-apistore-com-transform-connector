@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "default": "<foo>bar</foo>",
+            "type": "string"
+        }
+    }
+}

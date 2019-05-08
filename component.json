@@ -1,0 +1,83 @@
+{
+    "title": "Transform",
+    "description": "This API provides XML to JSON, JSON to XML transformations.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/wso2apistore.com/transform/1.0.0/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://gateway.wso2apistore.com/transform/1.0.0",
+                    "http://gateway.wso2apistore.com/transform/1.0.0",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "default": {
+                "label": "default",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://gateway.api.cloud.wso2.com:443/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "post_jsontoxml": {
+            "main": "./lib/actions/post_jsontoxml.js",
+            "title": "post_jsontoxml",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_jsontoxml.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_xmltojson": {
+            "main": "./lib/actions/post_xmltojson.js",
+            "title": "post_xmltojson",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_xmltojson.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
